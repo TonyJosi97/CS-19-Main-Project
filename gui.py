@@ -7,6 +7,9 @@ import os
 
 
 def sendMailCallBack():
+    def closeWindow():
+        smWin.destroy()
+
     def sendthemail():
         to = a1.get()
         sub = b1.get()
@@ -53,9 +56,6 @@ def sendMailCallBack():
             b1.delete(0, tk.END)
             c1.delete("1.0", tk.END)
 
-    def closeWindow():
-        smWin.destroy()
-
     smWin = tk.Toplevel(window)
     smWin.title("Send Mail")
     smWin.geometry("600x400")
@@ -86,16 +86,16 @@ def extractDataCallBack():
     def extractFunction():
         reloc = loc.get()
 
-        if(reloc == ""):
+        if reloc == "":
             var = tk.messagebox.showinfo("Send Mail", "Enter valid Path")
             return
 
-        else: 
-            dirPath=os.path.dirname(reloc)
-            #print(dirPath)
+        else:
+            dirPath = os.path.dirname(reloc)
+            # print(dirPath)
 
             logPath = os.path.join(dirPath, "embedlog" + "." + "logAES")
-            #print(logPath)
+            # print(logPath)
 
             extractText = subprocess.Popen(["./extract.sh", logPath, reloc])
             extractText.wait()
@@ -108,11 +108,6 @@ def extractDataCallBack():
 
             content.insert(tk.INSERT, textData)
 
-
-
-
-
-
     edWin = tk.Toplevel(window)
     edWin.title("Send Mail")
     edWin.geometry("600x400")
@@ -122,7 +117,9 @@ def extractDataCallBack():
     loc = tk.Entry(edWin, width="40")
     loc.grid(row=0, column=1)
 
-    d1 = tk.Button(edWin, text="Extract", highlightbackground="#3E4149", command=extractFunction)
+    d1 = tk.Button(
+        edWin, text="Extract", highlightbackground="#3E4149", command=extractFunction
+    )
     d1.grid(row=0, column=2)
 
     b = tk.Label(edWin, text="Email Content: ").grid(row=1, column=0)
