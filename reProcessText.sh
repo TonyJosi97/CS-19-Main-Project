@@ -1,2 +1,2 @@
 #!/bin/bash
-python newAES_DEC.py temp__extracted temp__compressed && python back_ascii.py && python decomp.py temp__actcompressed test1 && rm temp__actcompressed && rm temp__compressed && rm temp__extracted && rm protest.png && rm embedlog.logAES && rm embedlog.log
+python newAES_DEC.py temp__extracted temp__compressed && python back_ascii.py && python decomp.py temp__actcompressed test1 && rm temp__actcompressed && rm temp__compressed && rm temp__extracted && rm embedlog.log
