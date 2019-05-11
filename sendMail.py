@@ -50,7 +50,7 @@ def main():
 
     to = to.split(" ")
     myAcc = "madpeach97@gmail.com"
-    passwrd = "wrongsideofhell"
+    passwrd = "password"
     send_mail(myAcc, to, subjj, bodystr, passwrd, attchment)
 
 
