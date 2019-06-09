@@ -1,10 +1,1 @@
-Dear ma'am,
-
-Hope you are doing well!
-
-Regarding the above mentioned date, it would be great if you could kindly shift the date of exams to 2nd week of May as the students are having their exams and project presentations.
-
-Regards,
-Tony Josi
-tonyjosi@mec.ac.in 
-+91-99959 30550
+The project aims at securing confidential data communicated via emails to be secured using a new methodology that combines Compression, Encryption and Pixel Value Differencing. The process of securing the data involves: Arithmetic coding was applied on secret message for lossless compression, which provided 22% higher embedding capacity. The compressed secret message is subjected to AES encryption; this provides higher security in the cases of steganalysis attacks. After compression and encryption, LSB substitution and PVD are applied.

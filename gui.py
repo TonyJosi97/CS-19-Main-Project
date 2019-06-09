@@ -22,15 +22,15 @@ def sendMailCallBack():
         """
 
         if to == "":
-            var = tk.messagebox.showinfo("Send Mail", "Enter valid to Address")
+            var = tk.messagebox.showinfo("Compose Mail", "Enter valid to Address")
             return
 
         elif sub == "":
-            var = tk.messagebox.showinfo("Send Mail", "Enter valid Subject")
+            var = tk.messagebox.showinfo("Compose Mail", "Enter valid Subject")
             return
 
         elif cont == "":
-            var = tk.messagebox.showinfo("Send Mail", "Enter valid Content")
+            var = tk.messagebox.showinfo("Compose Mail", "Enter valid Content")
             return
 
         else:
@@ -50,26 +50,26 @@ def sendMailCallBack():
             sendMail = subprocess.Popen(["./sendMail.sh", "to", "subject"])
             sendMail.wait()
 
-            var = tk.messagebox.showinfo("Send Mail", "Succesfully Sent Mail!!")
+            var = tk.messagebox.showinfo("Compose Mail", "Thank you! Your message has been sent successfully.")
 
             a1.delete(0, tk.END)
             b1.delete(0, tk.END)
             c1.delete("1.0", tk.END)
 
     smWin = tk.Toplevel(window)
-    smWin.title("Send Mail")
+    smWin.title("Compose Mail")
     smWin.geometry("600x400")
     smWin.configure(background="grey")
     a = tk.Label(smWin, text="To: ").grid(row=0, column=0)
     b = tk.Label(smWin, text="Subject: ").grid(row=1, column=0)
     c = tk.Label(smWin, text="Email Content: ").grid(row=2, column=0)
-    a1 = tk.Entry(smWin, width="50")
+    a1 = tk.Entry(smWin, width="51")
     a1.grid(row=0, column=1)
-    b1 = tk.Entry(smWin, width="50")
+    b1 = tk.Entry(smWin, width="51")
     b1.grid(row=1, column=1)
     # c1 = Entry(smWin,width="50")
     # c1.grid(row=2,column=1,padx=5,pady=10,ipady=100)
-    c1 = ScrolledText(smWin, width=62, height=15, selectborderwidth=2)
+    c1 = ScrolledText(smWin, width=64, height=15, selectborderwidth=2)
     c1.grid(row=2, column=1)
     tk.Button(
         smWin, text="Send", highlightbackground="#3E4149", command=sendthemail
@@ -87,7 +87,11 @@ def extractDataCallBack():
         reloc = loc.get()
 
         if reloc == "":
-            var = tk.messagebox.showinfo("Send Mail", "Enter valid Path")
+            var = tk.messagebox.showinfo("Extract Data from Cover Image", "Enter valid Path")
+            return
+
+        elif (os.path.isfile(reloc) == 0):
+            var = tk.messagebox.showinfo("Extract Data from Cover Image", "Enter valid Path")
             return
 
         else:
@@ -96,6 +100,10 @@ def extractDataCallBack():
 
             logPath = os.path.join(dirPath, "embedlog" + "." + "logAES")
             # print(logPath)
+
+            if (os.path.isfile(logPath) == 0):
+                var = tk.messagebox.showinfo("Extract Data from Cover Image", '"embedlog.logAES" file missing! Exiting... Download it to the same folder of cover image and then extract... ')
+                return
 
             extractText = subprocess.Popen(["./extract.sh", logPath, reloc])
             extractText.wait()
@@ -109,7 +117,7 @@ def extractDataCallBack():
             content.insert(tk.INSERT, textData)
 
     edWin = tk.Toplevel(window)
-    edWin.title("Send Mail")
+    edWin.title("Extract Data from Cover Image")
     edWin.geometry("600x400")
     edWin.configure(background="grey")
 
@@ -142,10 +150,10 @@ def closeWindow():
     window.destroy()
 
 
-btn = ttk.Button(window, text="Send Mail", command=sendMailCallBack).place(
+btn = ttk.Button(window, text="Compose Mail", command=sendMailCallBack).place(
     relx=0.5, rely=0.35, anchor=tk.CENTER
 )
-btn = ttk.Button(window, text="Extract Data", command=extractDataCallBack).place(
+btn = ttk.Button(window, text="Extract Data from Cover Image", command=extractDataCallBack).place(
     relx=0.5, rely=0.55, anchor=tk.CENTER
 )
 btn = ttk.Button(window, text="Quit", command=closeWindow).place(
