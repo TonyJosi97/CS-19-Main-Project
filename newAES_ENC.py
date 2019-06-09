@@ -38,6 +38,7 @@ def main(args):
     #print(encdata)
     outp = open(opfile,"w")
     outp.write(encdata)
+    outp.close()
     
 
 
