@@ -48,11 +48,11 @@ liy = wi // 3
 def classify(pvd):
     nbits = 0
     if pvd < 16:
-        nbits = 2
-    elif 16 < pvd < 32:
         nbits = 3
-    else:
+    elif 16 < pvd < 32:
         nbits = 4
+    else:
+        nbits = 5
     return nbits
 
 
